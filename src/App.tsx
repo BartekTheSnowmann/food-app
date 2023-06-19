@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { Route, Routes } from "react-router";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import SearchResults from "./pages/SearchResults";
+import SingleFood from "./pages/SingleFood";
+import Banner from "./components/Banner";
+import Category from "./pages/Category";
+import Footer from "./components/Footer";
 
 function App() {
+  const [data, setData] = useState<any>([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar />
+      <Banner />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/meals/:name" element={<SearchResults />} />
+        <Route path="/meal/:id" element={<SingleFood />} />
+        <Route path="/category/:category" element={<Category />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }

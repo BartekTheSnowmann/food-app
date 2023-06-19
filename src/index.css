@@ -1,13 +1,66 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+  @apply font-bold;
+}
+
+p {
+  @apply text-lg;
+}
+
+form {
+  @apply flex;
+}
+
+.search__input {
+  @apply px-4 py-2 outline-none;
+}
+
+.search__btn {
+  @apply px-4 py-2 bg-white hover:bg-primary duration-300 border-l-2 border-primary;
+}
+
+.recipe__btn {
+  @apply px-4 py-2 bg-secondary-300 hover:bg-secondary-600 duration-300  text-white font-bold;
+}
+
+.meal__category {
+  @apply inline bg-quaternary px-4 py-1 rounded-l-full text-white;
+}
+
+.divider {
+  @apply w-20 bg-quaternary h-2 rounded-r-full mt-2;
+}
+
+.triangle {
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 20px 20px 0px;
+  border-color: transparent;
+  transform: rotate(0deg);
+}
+
+.triangle-colored {
+  border-color: transparent transparent rgb(136 78 64) transparent;
+}
+
+.category__btn {
+  @apply text-white uppercase p-2;
+}
+
+/* .category__btn {
+  @apply text-white uppercase p-2 after:content-[''] after:w-0 after:h-1 after:mx-auto after:bg-white after:mt-1 after:block group-hover:after:w-full group-hover:after:bg-primary after:duration-500;
+} */
+
+.item__category {
+  @apply flex flex-col items-center gap-4 p-4 mx-2 cursor-pointer hover:bg-quaternary;
 }
