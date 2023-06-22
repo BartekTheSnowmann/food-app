@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import { Bars3Icon, ChartPieIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -13,7 +13,9 @@ function Navbar({}: Props) {
       <div className="relative p-4 flex justify-between max-w-[1240px] mx-auto">
         <div>
           <Link to="/">
-            <h1 className="text-3xl cursor-pointer">Logo</h1>
+            <p className="flex items-center gap-x-4 font-bold text-3xl text-black cursor-pointer border-img px-2 italic">
+              Food
+            </p>
           </Link>
         </div>
         <div>

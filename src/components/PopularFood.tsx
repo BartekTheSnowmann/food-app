@@ -81,8 +81,30 @@ function PopularFood({}: Props) {
     navigate(`/meal/${id}`);
   };
 
+  const imgVariant = {
+    hidden: {
+      opacity: 0,
+      x: 20,
+    },
+    show: {
+      opacity: 1,
+      x: 0,
+    },
+  };
+
+  const ingredientsVariant = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+    },
+  };
+
   return (
-    <section className="max-w-[1240px] mx-auto px-4 py-16">
+    <section className="max-w-[1240px] min-h-[90vh]  mx-auto px-4 py-16">
       <div className="flex flex-col md:items-center mb-8">
         <h1 className="text-3xl md:text-5xl mb-3 md:text-center">
           Popular Ingredients
@@ -97,14 +119,15 @@ function PopularFood({}: Props) {
               {foodIngredientsData &&
                 foodIngredientsData.map((item: any) => (
                   <motion.div
-                    viewport={{ once: true }}
-                    initial={{ x: 100, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
                     key={item}
+                    variants={ingredientsVariant}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
                     className={`${
                       currentIngredient === item
                         ? "bg-primary-300 text-white"
-                        : "hover:bg-primary hover:text-white"
+                        : ""
                     } md:w-60 w-32 h-20 shadow-md p-4 cursor-pointer relative mr-[20px]`}
                     onClick={() =>
                       fetchMealsByIngredient(foodIngredientsData, item)
@@ -121,7 +144,12 @@ function PopularFood({}: Props) {
             </div>
             <div>
               {currentMeal.id ? (
-                <>
+                <motion.div
+                  key={currentMeal?.title}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                >
                   <h1 className="text-xl md:text-3xl">{currentMeal?.title}</h1>
                   <button
                     className="recipe__btn mt-4"
@@ -129,16 +157,22 @@ function PopularFood({}: Props) {
                   >
                     See recipe
                   </button>
-                </>
+                </motion.div>
               ) : (
                 ""
               )}
             </div>
           </div>
         </div>
-        {/* Meals */}
+        {/* Image */}
         <div className="flex-1">
-          <AnimatePresence>
+          <motion.div
+            key={currentMeal?.image}
+            variants={imgVariant}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+          >
             {currentMeal && (
               <img
                 src={currentMeal?.image}
@@ -146,7 +180,7 @@ function PopularFood({}: Props) {
                 className="transition-all duration-300 w-full h-full"
               />
             )}
-          </AnimatePresence>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -23,14 +23,14 @@ function RandomMeal({}: Props) {
     navigate(`/meal/${id}`);
   };
 
-  const headingVariant = {
+  const imgVariant = {
     hidden: {
       opacity: 0,
-      y: -50,
+      x: 50,
     },
     show: {
       opacity: 1,
-      y: 0,
+      x: 0,
     },
   };
 
@@ -38,9 +38,12 @@ function RandomMeal({}: Props) {
     <section className="px-4 py-16 max-w-[1240px] min-h-[50vh] mx-auto flex flex-col md:flex-row gap-12 justify-between">
       <div className="flex-1">
         <div>
-          <h1 className="text-3xl md:text-5xl">Todays Special</h1>
+          <h1 className="text-3xl md:text-5xl drop-shadow-lg">
+            Todays Special
+          </h1>
           <div className="divider"></div>
         </div>
+        {/* Food Data */}
         <div>
           {data &&
             data.map((item: any) => (
@@ -64,12 +67,17 @@ function RandomMeal({}: Props) {
             ))}
         </div>
       </div>
+      {/* Image */}
       <div className="flex-1">
         {data
           ? data.map((item: any) => (
-              <div
+              <motion.div
                 key={item.idMeal}
                 className="flex flex-col md:flex-row justify-between items-center"
+                variants={imgVariant}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 1 }}
               >
                 <div className="flex-1 order-2 relative">
                   <img
@@ -81,7 +89,7 @@ function RandomMeal({}: Props) {
                     {item?.strCategory}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))
           : ""}
       </div>

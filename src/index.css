@@ -20,12 +20,16 @@ form {
   @apply flex;
 }
 
+button {
+  @apply drop-shadow-md;
+}
+
 .search__input {
   @apply px-4 py-2 outline-none;
 }
 
 .search__btn {
-  @apply px-4 py-2 bg-white hover:bg-primary duration-300 border-l-2 border-primary;
+  @apply px-4 py-2 bg-white hover:bg-gray-200 duration-300 border-l-2 border-gray-200;
 }
 
 .recipe__btn {
@@ -37,7 +41,7 @@ form {
 }
 
 .divider {
-  @apply w-20 bg-quaternary h-2 rounded-r-full mt-2;
+  @apply w-20 bg-quaternary h-1 rounded-r-full mt-2;
 }
 
 .triangle {
@@ -62,5 +66,16 @@ form {
 } */
 
 .item__category {
-  @apply flex flex-col items-center gap-4 p-4 mx-2 cursor-pointer hover:bg-quaternary;
+  @apply flex flex-col items-center gap-4 p-4 mx-2 cursor-pointer hover:bg-quaternary duration-300;
+}
+
+.border-img {
+  border-top: 4px solid white;
+  border-left: 4px solid white;
+  border-image-source: radial-gradient(
+    circle at top left,
+    rgb(239 68 68) 20%,
+    transparent 90%
+  );
+  border-image-slice: 1;
 }

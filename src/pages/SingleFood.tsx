@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import { foodById } from "../api/fetchData";
 import axios from "axios";
 import {
@@ -55,55 +55,66 @@ function SingleFood({}: Props) {
   };
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
-    <section>
-      <div className="max-w-[1240px] mx-auto py-8">
-        <div
-          className="flex items-center cursor-pointer"
-          onClick={() => navigate(-1)}
-        >
-          <ChevronLeftIcon className="h-6 w-6 " />
-          <h1>Go back</h1>
-        </div>
-
-        <div className="py-8">
-          {data &&
-            data.map((item: any) => (
-              <div
-                key={item.idMeal}
-                className="flex flex-col md:flex-row justify-between gap-4"
-              >
-                <div className="flex-1">
-                  <h1 className="text-3xl mb-4">{item.strMeal}</h1>
-                  <p>
-                    {instruction}
-                    <span
-                      className="text-blue-700 flex items-center cursor-pointer"
-                      onClick={() => readMore()}
-                    >
-                      {" "}
-                      read more
-                      <ChevronDownIcon className="w-6 h-6" />
-                    </span>
-                  </p>
+    <motion.div
+      key={location.pathname}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <section>
+        <div className="max-w-[1240px] mx-auto py-8 px-4">
+          <div
+            className="flex items-center cursor-pointer"
+            onClick={() => navigate(-1)}
+          >
+            <ChevronLeftIcon className="h-6 w-6 " />
+            <h1>Go back</h1>
+          </div>
+          <div className="py-8">
+            {data &&
+              data.map((item: any) => (
+                <div
+                  key={item.idMeal}
+                  className="flex flex-col md:flex-row justify-between gap-4"
+                >
+                  <div className="flex-1">
+                    <h1 className="text-3xl mb-4">{item.strMeal}</h1>
+                    <p>
+                      {instruction}
+                      <span
+                        className="text-blue-700 flex items-center cursor-pointer"
+                        onClick={() => readMore()}
+                      >
+                        {" "}
+                        read more
+                        <ChevronDownIcon className="w-6 h-6" />
+                      </span>
+                    </p>
+                  </div>
+                  <div className="flex-1">
+                    <img
+                      src={item.strMealThumb}
+                      alt="food image"
+                      className=""
+                    />
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <img src={item.strMealThumb} alt="food image" className="" />
-                </div>
-              </div>
+              ))}
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
+            {ingredients.map((item: any) => (
+              <p key={item} className="flex gap-x-2">
+                <StopIcon className="h-6 w-6" />
+                {item}
+              </p>
             ))}
+          </div>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
-          {ingredients.map((item: any) => (
-            <p key={item} className="flex gap-x-2">
-              <StopIcon className="h-6 w-6" />
-              {item}
-            </p>
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
+    </motion.div>
   );
 }
 

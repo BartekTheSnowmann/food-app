@@ -7,6 +7,7 @@ import SingleFood from "./pages/SingleFood";
 import Banner from "./components/Banner";
 import Category from "./pages/Category";
 import Footer from "./components/Footer";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   const [data, setData] = useState<any>([]);

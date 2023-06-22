@@ -59,9 +59,9 @@ function CategoriesOfFood({}: Props) {
   return (
     <section className="py-16 px-4 bg-tertiary">
       <div className="flex flex-col mx-auto">
-        <div className="text-white text-left md:text-center mb-16">
-          <h1 className="text-xl sm:text-3xl">Many Different Categories</h1>
-          <p className="mt-2 flex items-center md:justify-center gap-x-2">
+        <div className="text-white mb-16 flex flex-col gap-2 items-center">
+          <h1 className="text-2xl sm:text-3xl">Many Different Categories</h1>
+          <p className="flex items-center md:justify-center gap-x-2">
             Chose your favorite one
             <HeartIcon className="h-8 w-8 text-red-400" />
           </p>
